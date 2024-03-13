@@ -1,0 +1,35 @@
+{
+    "Alabama": {
+        "1": {
+        "model_path": "./src/model_related/train_model/saved_last/RecVAE-Alabama.pth",
+        "mod": ">=",
+        "reviews_threshold": 0
+        }
+    },
+    "Wyoming": {
+        "1": {
+        "model_path": "./src/model_related/train_model/saved_last/RecVAE-Wyoming.pth",
+        "mod": ">=",
+        "reviews_threshold": 0
+        }
+    },
+    "Maine": {
+        "1": {
+        "model_path": "./src/model_related/train_model/saved_last/RecVAE-Maine.pth",
+        "mod": ">=",
+        "reviews_threshold": 0
+        }
+    },
+    "Indiana": {
+        "1": {
+            "model_path": "./src/model_related/train_model/saved_last/RecVAE-Indiana_large.pth",
+            "mod": ">=",
+            "reviews_threshold": 500
+        },
+        "2": {
+            "model_path": "./src/model_related/train_model/saved_last/RecVAE-Indiana_small.pth",
+            "mod": "<",
+            "reviews_threshold": 500
+        }
+    }
+}

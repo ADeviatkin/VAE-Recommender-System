@@ -1,0 +1,307 @@
+Tue 12 Mar 2024 10:53:30 INFO  ['run_vae_experiment_2.py', '{\n    "model":"RecVAE", "mlp_hidden_size":[64], "latent_dim":32, "epochs":30, "eval_batch_size":2048, "train_batch_size":2048, \n    "data_path": "/home/developer/Documents/GitHub/System_Rekomendacyjny_z_VAE/Praktyka/recbole_test/dataset",\n    "dataset": "indiana_small",\n    "eval_args": {\n        "split": {"RS": [0.8, 0.1, 0.1]},\n        "order": "RO",\n        "group_by": "user",\n        "mode": {"valid": "uni100", "test": "uni100"},\n        "valid_neg_sample_args": {"distribution": "uniform", "sample_num": 1},\n        "test_neg_sample_args": {"distribution": "uniform", "sample_num": 1}\n    },\n    "metrics": ["Recall", "MRR", "NDCG", "Hit", "Precision"]}']
+Tue 12 Mar 2024 10:53:30 INFO  
+General Hyper Parameters:
+gpu_id = 0
+use_gpu = True
+seed = 2020
+state = INFO
+reproducibility = True
+data_path = /home/developer/Documents/GitHub/System_Rekomendacyjny_z_VAE/Praktyka/recbole_test/dataset/indiana_small
+checkpoint_dir = saved
+show_progress = True
+save_dataset = False
+dataset_save_path = None
+save_dataloaders = False
+dataloaders_save_path = None
+log_wandb = False
+
+Training Hyper Parameters:
+epochs = 30
+train_batch_size = 2048
+learner = adam
+learning_rate = 0.001
+train_neg_sample_args = {'distribution': 'uniform', 'sample_num': 1, 'alpha': 1.0, 'dynamic': False, 'candidate_num': 0}
+eval_step = 1
+stopping_step = 10
+clip_grad_norm = None
+weight_decay = 0.0
+loss_decimal_place = 4
+
+Evaluation Hyper Parameters:
+eval_args = {'split': {'RS': [0.8, 0.1, 0.1]}, 'order': 'RO', 'group_by': 'user', 'mode': {'valid': 'uni100', 'test': 'uni100'}, 'valid_neg_sample_args': {'distribution': 'uniform', 'sample_num': 1}, 'test_neg_sample_args': {'distribution': 'uniform', 'sample_num': 1}}
+repeatable = False
+metrics = ['Recall', 'MRR', 'NDCG', 'Hit', 'Precision']
+topk = [10]
+valid_metric = MRR@10
+valid_metric_bigger = True
+eval_batch_size = 2048
+metric_decimal_place = 4
+
+Dataset Hyper Parameters:
+field_separator = 	
+seq_separator =  
+USER_ID_FIELD = user_id
+ITEM_ID_FIELD = item_id
+RATING_FIELD = rating
+TIME_FIELD = timestamp
+seq_len = None
+LABEL_FIELD = label
+threshold = None
+NEG_PREFIX = neg_
+load_col = {'inter': ['user_id', 'item_id']}
+unload_col = None
+unused_col = None
+additional_feat_suffix = None
+rm_dup_inter = None
+val_interval = None
+filter_inter_by_user_or_item = True
+user_inter_num_interval = [0,inf)
+item_inter_num_interval = [0,inf)
+alias_of_user_id = None
+alias_of_item_id = None
+alias_of_entity_id = None
+alias_of_relation_id = None
+preload_weight = None
+normalize_field = None
+normalize_all = None
+ITEM_LIST_LENGTH_FIELD = item_length
+LIST_SUFFIX = _list
+MAX_ITEM_LIST_LENGTH = 50
+POSITION_FIELD = position_id
+HEAD_ENTITY_ID_FIELD = head_id
+TAIL_ENTITY_ID_FIELD = tail_id
+RELATION_ID_FIELD = relation_id
+ENTITY_ID_FIELD = entity_id
+benchmark_filename = None
+
+Other Hyper Parameters: 
+worker = 0
+wandb_project = recbole
+shuffle = True
+require_pow = False
+enable_amp = False
+enable_scaler = False
+transform = None
+hidden_dimension = 600
+latent_dimension = 200
+dropout_prob = 0.5
+beta = 0.2
+gamma = 0.005
+mixture_weights = [0.15, 0.75, 0.1]
+n_enc_epochs = 3
+n_dec_epochs = 1
+numerical_features = []
+discretization = None
+kg_reverse_r = False
+entity_kg_num_interval = [0,inf)
+relation_kg_num_interval = [0,inf)
+MODEL_TYPE = ModelType.GENERAL
+mlp_hidden_size = [64]
+latent_dim = 32
+MODEL_INPUT_TYPE = InputType.PAIRWISE
+eval_type = EvaluatorType.RANKING
+single_spec = True
+local_rank = 0
+device = cuda
+valid_neg_sample_args = {'distribution': 'uniform', 'sample_num': 100}
+test_neg_sample_args = {'distribution': 'uniform', 'sample_num': 100}
+
+
+Tue 12 Mar 2024 10:53:35 INFO  indiana_small
+The number of users: 776293
+Average actions of users: 2.5518992853204723
+The number of items: 13074
+Average actions of items: 151.5351487799281
+The number of inters: 1981019
+The sparsity of the dataset: 99.98048113815182%
+Remain Fields: ['user_id', 'item_id']
+Tue 12 Mar 2024 10:53:43 INFO  [Training]: train_batch_size = [2048] train_neg_sample_args: [{'distribution': 'uniform', 'sample_num': 1, 'alpha': 1.0, 'dynamic': False, 'candidate_num': 0}]
+Tue 12 Mar 2024 10:53:43 INFO  [Evaluation]: eval_batch_size = [2048] eval_args: [{'split': {'RS': [0.8, 0.1, 0.1]}, 'order': 'RO', 'group_by': 'user', 'mode': {'valid': 'uni100', 'test': 'uni100'}, 'valid_neg_sample_args': {'distribution': 'uniform', 'sample_num': 1}, 'test_neg_sample_args': {'distribution': 'uniform', 'sample_num': 1}}]
+Tue 12 Mar 2024 10:53:45 INFO  RecVAE(
+  (encoder): Encoder(
+    (fc1): Linear(in_features=13074, out_features=600, bias=True)
+    (ln1): LayerNorm((600,), eps=0.1, elementwise_affine=True)
+    (fc2): Linear(in_features=600, out_features=600, bias=True)
+    (ln2): LayerNorm((600,), eps=0.1, elementwise_affine=True)
+    (fc3): Linear(in_features=600, out_features=600, bias=True)
+    (ln3): LayerNorm((600,), eps=0.1, elementwise_affine=True)
+    (fc4): Linear(in_features=600, out_features=600, bias=True)
+    (ln4): LayerNorm((600,), eps=0.1, elementwise_affine=True)
+    (fc5): Linear(in_features=600, out_features=600, bias=True)
+    (ln5): LayerNorm((600,), eps=0.1, elementwise_affine=True)
+    (fc_mu): Linear(in_features=600, out_features=200, bias=True)
+    (fc_logvar): Linear(in_features=600, out_features=200, bias=True)
+  )
+  (prior): CompositePrior(
+    (encoder_old): Encoder(
+      (fc1): Linear(in_features=13074, out_features=600, bias=True)
+      (ln1): LayerNorm((600,), eps=0.1, elementwise_affine=True)
+      (fc2): Linear(in_features=600, out_features=600, bias=True)
+      (ln2): LayerNorm((600,), eps=0.1, elementwise_affine=True)
+      (fc3): Linear(in_features=600, out_features=600, bias=True)
+      (ln3): LayerNorm((600,), eps=0.1, elementwise_affine=True)
+      (fc4): Linear(in_features=600, out_features=600, bias=True)
+      (ln4): LayerNorm((600,), eps=0.1, elementwise_affine=True)
+      (fc5): Linear(in_features=600, out_features=600, bias=True)
+      (ln5): LayerNorm((600,), eps=0.1, elementwise_affine=True)
+      (fc_mu): Linear(in_features=600, out_features=200, bias=True)
+      (fc_logvar): Linear(in_features=600, out_features=200, bias=True)
+    )
+  )
+  (decoder): Linear(in_features=200, out_features=13074, bias=True)
+)
+Trainable parameters: 12161674
+Tue 12 Mar 2024 10:53:45 INFO  FLOPs: 12145200.0
+Tue 12 Mar 2024 10:54:28 INFO  epoch 0 training [time: 42.44s, train loss: 2049.8622]
+Tue 12 Mar 2024 11:02:15 INFO  epoch 0 evaluating [time: 466.83s, valid_score: 0.127500]
+Tue 12 Mar 2024 11:02:15 INFO  valid result: 
+recall@10 : 0.2958    mrr@10 : 0.1275    ndcg@10 : 0.1644    hit@10 : 0.3055    precision@10 : 0.031
+Tue 12 Mar 2024 11:02:15 INFO  Saving current: saved/RecVAE-Mar-12-2024_10-53-45.pth
+Tue 12 Mar 2024 11:02:57 INFO  epoch 1 training [time: 42.34s, train loss: 521.6660]
+Tue 12 Mar 2024 11:10:18 INFO  epoch 1 evaluating [time: 441.34s, valid_score: 0.509500]
+Tue 12 Mar 2024 11:10:18 INFO  valid result: 
+recall@10 : 0.7622    mrr@10 : 0.5095    ndcg@10 : 0.5668    hit@10 : 0.7703    precision@10 : 0.0805
+Tue 12 Mar 2024 11:10:19 INFO  Saving current: saved/RecVAE-Mar-12-2024_10-53-45.pth
+Tue 12 Mar 2024 11:11:01 INFO  epoch 2 training [time: 42.37s, train loss: 453.8223]
+Tue 12 Mar 2024 11:18:46 INFO  epoch 2 evaluating [time: 465.06s, valid_score: 0.592700]
+Tue 12 Mar 2024 11:18:46 INFO  valid result: 
+recall@10 : 0.8542    mrr@10 : 0.5927    ndcg@10 : 0.6527    hit@10 : 0.8615    precision@10 : 0.09
+Tue 12 Mar 2024 11:18:46 INFO  Saving current: saved/RecVAE-Mar-12-2024_10-53-45.pth
+Tue 12 Mar 2024 11:19:29 INFO  epoch 3 training [time: 42.91s, train loss: 442.9930]
+Tue 12 Mar 2024 11:26:41 INFO  epoch 3 evaluating [time: 431.92s, valid_score: 0.606400]
+Tue 12 Mar 2024 11:26:41 INFO  valid result: 
+recall@10 : 0.8649    mrr@10 : 0.6064    ndcg@10 : 0.6659    hit@10 : 0.8721    precision@10 : 0.0911
+Tue 12 Mar 2024 11:26:41 INFO  Saving current: saved/RecVAE-Mar-12-2024_10-53-45.pth
+Tue 12 Mar 2024 11:27:24 INFO  epoch 4 training [time: 42.44s, train loss: 461.9523]
+Tue 12 Mar 2024 11:35:09 INFO  epoch 4 evaluating [time: 465.64s, valid_score: 0.613600]
+Tue 12 Mar 2024 11:35:09 INFO  valid result: 
+recall@10 : 0.871    mrr@10 : 0.6136    ndcg@10 : 0.6728    hit@10 : 0.8781    precision@10 : 0.0917
+Tue 12 Mar 2024 11:35:09 INFO  Saving current: saved/RecVAE-Mar-12-2024_10-53-45.pth
+Tue 12 Mar 2024 11:35:51 INFO  epoch 5 training [time: 41.71s, train loss: 496.6240]
+Tue 12 Mar 2024 11:44:22 INFO  epoch 5 evaluating [time: 511.14s, valid_score: 0.617400]
+Tue 12 Mar 2024 11:44:22 INFO  valid result: 
+recall@10 : 0.8726    mrr@10 : 0.6174    ndcg@10 : 0.6761    hit@10 : 0.8797    precision@10 : 0.0919
+Tue 12 Mar 2024 11:44:22 INFO  Saving current: saved/RecVAE-Mar-12-2024_10-53-45.pth
+Tue 12 Mar 2024 11:45:05 INFO  epoch 6 training [time: 42.62s, train loss: 531.3132]
+Tue 12 Mar 2024 11:52:51 INFO  epoch 6 evaluating [time: 466.53s, valid_score: 0.621900]
+Tue 12 Mar 2024 11:52:51 INFO  valid result: 
+recall@10 : 0.8749    mrr@10 : 0.6219    ndcg@10 : 0.6801    hit@10 : 0.8819    precision@10 : 0.0921
+Tue 12 Mar 2024 11:52:52 INFO  Saving current: saved/RecVAE-Mar-12-2024_10-53-45.pth
+Tue 12 Mar 2024 11:53:34 INFO  epoch 7 training [time: 42.04s, train loss: 579.8316]
+Tue 12 Mar 2024 12:02:48 INFO  epoch 7 evaluating [time: 554.68s, valid_score: 0.621700]
+Tue 12 Mar 2024 12:02:48 INFO  valid result: 
+recall@10 : 0.875    mrr@10 : 0.6217    ndcg@10 : 0.68    hit@10 : 0.8821    precision@10 : 0.0921
+Tue 12 Mar 2024 12:03:32 INFO  epoch 8 training [time: 43.62s, train loss: 607.7430]
+Tue 12 Mar 2024 12:11:26 INFO  epoch 8 evaluating [time: 474.21s, valid_score: 0.623300]
+Tue 12 Mar 2024 12:11:26 INFO  valid result: 
+recall@10 : 0.8762    mrr@10 : 0.6233    ndcg@10 : 0.6815    hit@10 : 0.8832    precision@10 : 0.0922
+Tue 12 Mar 2024 12:11:26 INFO  Saving current: saved/RecVAE-Mar-12-2024_10-53-45.pth
+Tue 12 Mar 2024 12:12:08 INFO  epoch 9 training [time: 42.02s, train loss: 625.8182]
+Tue 12 Mar 2024 12:19:36 INFO  epoch 9 evaluating [time: 447.85s, valid_score: 0.624500]
+Tue 12 Mar 2024 12:19:36 INFO  valid result: 
+recall@10 : 0.8768    mrr@10 : 0.6245    ndcg@10 : 0.6826    hit@10 : 0.8838    precision@10 : 0.0923
+Tue 12 Mar 2024 12:19:36 INFO  Saving current: saved/RecVAE-Mar-12-2024_10-53-45.pth
+Tue 12 Mar 2024 12:20:18 INFO  epoch 10 training [time: 41.91s, train loss: 665.0959]
+Tue 12 Mar 2024 12:27:32 INFO  epoch 10 evaluating [time: 434.31s, valid_score: 0.625400]
+Tue 12 Mar 2024 12:27:32 INFO  valid result: 
+recall@10 : 0.877    mrr@10 : 0.6254    ndcg@10 : 0.6833    hit@10 : 0.8841    precision@10 : 0.0923
+Tue 12 Mar 2024 12:27:33 INFO  Saving current: saved/RecVAE-Mar-12-2024_10-53-45.pth
+Tue 12 Mar 2024 12:28:15 INFO  epoch 11 training [time: 42.58s, train loss: 731.6278]
+Tue 12 Mar 2024 12:35:59 INFO  epoch 11 evaluating [time: 464.24s, valid_score: 0.626500]
+Tue 12 Mar 2024 12:35:59 INFO  valid result: 
+recall@10 : 0.8783    mrr@10 : 0.6265    ndcg@10 : 0.6845    hit@10 : 0.8854    precision@10 : 0.0924
+Tue 12 Mar 2024 12:36:00 INFO  Saving current: saved/RecVAE-Mar-12-2024_10-53-45.pth
+Tue 12 Mar 2024 12:36:42 INFO  epoch 12 training [time: 42.66s, train loss: 723.0673]
+Tue 12 Mar 2024 12:44:59 INFO  epoch 12 evaluating [time: 497.29s, valid_score: 0.626000]
+Tue 12 Mar 2024 12:44:59 INFO  valid result: 
+recall@10 : 0.8776    mrr@10 : 0.626    ndcg@10 : 0.6839    hit@10 : 0.8847    precision@10 : 0.0924
+Tue 12 Mar 2024 12:45:42 INFO  epoch 13 training [time: 42.42s, train loss: 767.5855]
+Tue 12 Mar 2024 12:52:16 INFO  epoch 13 evaluating [time: 394.23s, valid_score: 0.626300]
+Tue 12 Mar 2024 12:52:16 INFO  valid result: 
+recall@10 : 0.8772    mrr@10 : 0.6263    ndcg@10 : 0.684    hit@10 : 0.8843    precision@10 : 0.0923
+Tue 12 Mar 2024 12:52:56 INFO  epoch 14 training [time: 39.60s, train loss: 799.8523]
+Tue 12 Mar 2024 12:59:45 INFO  epoch 14 evaluating [time: 409.60s, valid_score: 0.627800]
+Tue 12 Mar 2024 12:59:45 INFO  valid result: 
+recall@10 : 0.8784    mrr@10 : 0.6278    ndcg@10 : 0.6854    hit@10 : 0.8855    precision@10 : 0.0924
+Tue 12 Mar 2024 12:59:45 INFO  Saving current: saved/RecVAE-Mar-12-2024_10-53-45.pth
+Tue 12 Mar 2024 13:00:25 INFO  epoch 15 training [time: 39.60s, train loss: 822.0574]
+Tue 12 Mar 2024 13:08:14 INFO  epoch 15 evaluating [time: 469.21s, valid_score: 0.627800]
+Tue 12 Mar 2024 13:08:14 INFO  valid result: 
+recall@10 : 0.8788    mrr@10 : 0.6278    ndcg@10 : 0.6856    hit@10 : 0.8859    precision@10 : 0.0925
+Tue 12 Mar 2024 13:08:14 INFO  Saving current: saved/RecVAE-Mar-12-2024_10-53-45.pth
+Tue 12 Mar 2024 13:08:54 INFO  epoch 16 training [time: 39.61s, train loss: 859.4314]
+Tue 12 Mar 2024 13:16:34 INFO  epoch 16 evaluating [time: 459.68s, valid_score: 0.628500]
+Tue 12 Mar 2024 13:16:34 INFO  valid result: 
+recall@10 : 0.8788    mrr@10 : 0.6285    ndcg@10 : 0.6861    hit@10 : 0.8859    precision@10 : 0.0925
+Tue 12 Mar 2024 13:16:34 INFO  Saving current: saved/RecVAE-Mar-12-2024_10-53-45.pth
+Tue 12 Mar 2024 13:17:13 INFO  epoch 17 training [time: 39.56s, train loss: 883.7905]
+Tue 12 Mar 2024 13:23:59 INFO  epoch 17 evaluating [time: 405.29s, valid_score: 0.627900]
+Tue 12 Mar 2024 13:23:59 INFO  valid result: 
+recall@10 : 0.879    mrr@10 : 0.6279    ndcg@10 : 0.6857    hit@10 : 0.8861    precision@10 : 0.0925
+Tue 12 Mar 2024 13:24:38 INFO  epoch 18 training [time: 39.63s, train loss: 911.2349]
+Tue 12 Mar 2024 13:33:01 INFO  epoch 18 evaluating [time: 502.75s, valid_score: 0.628600]
+Tue 12 Mar 2024 13:33:01 INFO  valid result: 
+recall@10 : 0.879    mrr@10 : 0.6286    ndcg@10 : 0.6862    hit@10 : 0.8862    precision@10 : 0.0925
+Tue 12 Mar 2024 13:33:01 INFO  Saving current: saved/RecVAE-Mar-12-2024_10-53-45.pth
+Tue 12 Mar 2024 13:33:41 INFO  epoch 19 training [time: 39.61s, train loss: 928.6694]
+Tue 12 Mar 2024 13:41:19 INFO  epoch 19 evaluating [time: 458.68s, valid_score: 0.628900]
+Tue 12 Mar 2024 13:41:19 INFO  valid result: 
+recall@10 : 0.8786    mrr@10 : 0.6289    ndcg@10 : 0.6864    hit@10 : 0.8858    precision@10 : 0.0924
+Tue 12 Mar 2024 13:41:20 INFO  Saving current: saved/RecVAE-Mar-12-2024_10-53-45.pth
+Tue 12 Mar 2024 13:42:02 INFO  epoch 20 training [time: 42.25s, train loss: 972.2180]
+Tue 12 Mar 2024 13:51:06 INFO  epoch 20 evaluating [time: 543.84s, valid_score: 0.629700]
+Tue 12 Mar 2024 13:51:06 INFO  valid result: 
+recall@10 : 0.8797    mrr@10 : 0.6297    ndcg@10 : 0.6873    hit@10 : 0.8868    precision@10 : 0.0926
+Tue 12 Mar 2024 13:51:06 INFO  Saving current: saved/RecVAE-Mar-12-2024_10-53-45.pth
+Tue 12 Mar 2024 13:51:48 INFO  epoch 21 training [time: 41.98s, train loss: 990.8229]
+Tue 12 Mar 2024 14:00:25 INFO  epoch 21 evaluating [time: 516.74s, valid_score: 0.629600]
+Tue 12 Mar 2024 14:00:25 INFO  valid result: 
+recall@10 : 0.8795    mrr@10 : 0.6296    ndcg@10 : 0.6872    hit@10 : 0.8868    precision@10 : 0.0925
+Tue 12 Mar 2024 14:01:08 INFO  epoch 22 training [time: 43.90s, train loss: 967.7688]
+Tue 12 Mar 2024 14:08:06 INFO  epoch 22 evaluating [time: 417.31s, valid_score: 0.629600]
+Tue 12 Mar 2024 14:08:06 INFO  valid result: 
+recall@10 : 0.8796    mrr@10 : 0.6296    ndcg@10 : 0.6872    hit@10 : 0.8868    precision@10 : 0.0926
+Tue 12 Mar 2024 14:08:48 INFO  epoch 23 training [time: 41.78s, train loss: 1010.7035]
+Tue 12 Mar 2024 14:15:32 INFO  epoch 23 evaluating [time: 404.70s, valid_score: 0.630700]
+Tue 12 Mar 2024 14:15:32 INFO  valid result: 
+recall@10 : 0.8802    mrr@10 : 0.6307    ndcg@10 : 0.6881    hit@10 : 0.8874    precision@10 : 0.0926
+Tue 12 Mar 2024 14:15:32 INFO  Saving current: saved/RecVAE-Mar-12-2024_10-53-45.pth
+Tue 12 Mar 2024 14:16:15 INFO  epoch 24 training [time: 42.95s, train loss: 1042.9337]
+Tue 12 Mar 2024 14:23:30 INFO  epoch 24 evaluating [time: 434.54s, valid_score: 0.630400]
+Tue 12 Mar 2024 14:23:30 INFO  valid result: 
+recall@10 : 0.8804    mrr@10 : 0.6304    ndcg@10 : 0.6879    hit@10 : 0.8875    precision@10 : 0.0927
+Tue 12 Mar 2024 14:24:11 INFO  epoch 25 training [time: 41.37s, train loss: 1072.9889]
+Tue 12 Mar 2024 14:32:01 INFO  epoch 25 evaluating [time: 469.80s, valid_score: 0.631700]
+Tue 12 Mar 2024 14:32:01 INFO  valid result: 
+recall@10 : 0.8804    mrr@10 : 0.6317    ndcg@10 : 0.6888    hit@10 : 0.8876    precision@10 : 0.0926
+Tue 12 Mar 2024 14:32:01 INFO  Saving current: saved/RecVAE-Mar-12-2024_10-53-45.pth
+Tue 12 Mar 2024 14:32:44 INFO  epoch 26 training [time: 42.70s, train loss: 1089.3124]
+Tue 12 Mar 2024 14:40:55 INFO  epoch 26 evaluating [time: 491.04s, valid_score: 0.630900]
+Tue 12 Mar 2024 14:40:55 INFO  valid result: 
+recall@10 : 0.8806    mrr@10 : 0.6309    ndcg@10 : 0.6884    hit@10 : 0.8878    precision@10 : 0.0926
+Tue 12 Mar 2024 14:41:37 INFO  epoch 27 training [time: 42.31s, train loss: 1098.2920]
+Tue 12 Mar 2024 14:48:45 INFO  epoch 27 evaluating [time: 427.38s, valid_score: 0.631000]
+Tue 12 Mar 2024 14:48:45 INFO  valid result: 
+recall@10 : 0.881    mrr@10 : 0.631    ndcg@10 : 0.6885    hit@10 : 0.8882    precision@10 : 0.0927
+Tue 12 Mar 2024 14:49:24 INFO  epoch 28 training [time: 39.56s, train loss: 1111.6032]
+Tue 12 Mar 2024 14:56:06 INFO  epoch 28 evaluating [time: 402.05s, valid_score: 0.631000]
+Tue 12 Mar 2024 14:56:06 INFO  valid result: 
+recall@10 : 0.881    mrr@10 : 0.631    ndcg@10 : 0.6885    hit@10 : 0.8881    precision@10 : 0.0927
+Tue 12 Mar 2024 14:56:46 INFO  epoch 29 training [time: 40.29s, train loss: 1126.9297]
+Tue 12 Mar 2024 15:03:35 INFO  epoch 29 evaluating [time: 408.81s, valid_score: 0.632600]
+Tue 12 Mar 2024 15:03:35 INFO  valid result: 
+recall@10 : 0.8811    mrr@10 : 0.6326    ndcg@10 : 0.6896    hit@10 : 0.8882    precision@10 : 0.0927
+Tue 12 Mar 2024 15:03:35 INFO  Saving current: saved/RecVAE-Mar-12-2024_10-53-45.pth
+Tue 12 Mar 2024 15:03:35 INFO  Loading model structure and parameters from saved/RecVAE-Mar-12-2024_10-53-45.pth
+Tue 12 Mar 2024 15:18:51 INFO  The running environment of this training is as follows:
++-------------+----------------+
+| Environment |     Usage      |
++=============+================+
+| CPU         |     1.00 %     |
++-------------+----------------+
+| GPU         | 2.17 G/7.78 G  |
++-------------+----------------+
+| Memory      | 2.77 G/31.11 G |
++-------------+----------------+
+Tue 12 Mar 2024 15:18:51 INFO  best valid : OrderedDict([('recall@10', 0.8811), ('mrr@10', 0.6326), ('ndcg@10', 0.6896), ('hit@10', 0.8882), ('precision@10', 0.0927)])
+Tue 12 Mar 2024 15:18:51 INFO  test result: OrderedDict([('recall@10', 0.8652), ('mrr@10', 0.6101), ('ndcg@10', 0.6699), ('hit@10', 0.8695), ('precision@10', 0.0893)])
