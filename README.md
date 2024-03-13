@@ -1,4 +1,4 @@
-# Full Stack Flask-React Application
+# Full Stack Recommender App
 
 This repository contains a full-stack application with a Flask backend and React frontend, designed to showcase a recommendation system using VAEs.
 
